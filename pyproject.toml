@@ -1,0 +1,49 @@
+[project]
+name = "netbox-webhook"
+version = "0.0.1"
+description = "A FastAPI service using models created by aiopenapi3 from the Netbox OpenAPI Description Document to create models for the webhook."
+authors = [
+    {name = "Markus Kötter", email = "commonism@noreply.users.github.com"},
+]
+dependencies = [
+    "aiopenapi3@git+https://github.com/commonism/aiopenapi3@pydanticv2",
+    "pydantic",
+    "fastapi",
+    "uvicorn",
+]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+#dynamic = ['version']
+
+[project.urls]
+Documentation = "https://github.com/commonism/netbox-webhook"
+Repository = "https://github.com/commonism/netbox-webhook"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["netbox_webhook"]
+
+
+#[tool.setuptools.dynamic]
+#version = {attr = "netbox.version.__version__"}
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "hypercorn",
+    "uvloop",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+log_cli = "yes"
+log_cli_level = "DEBUG"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
